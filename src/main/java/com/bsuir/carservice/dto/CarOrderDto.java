@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class CarOrderDto implements Serializable {
     private Long id;
-    private Date date;
+    private String date;
     private CloseReason closeReason;
     private Status status;
     private PersonDto person;
@@ -26,11 +26,11 @@ public class CarOrderDto implements Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

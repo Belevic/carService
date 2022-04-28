@@ -35,7 +35,7 @@ public class SparePartOrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SparePartOrderDto>> getAll() {
-        return ResponseEntity.ok(sparePartOrderService.getAll());
+    public ResponseEntity<List<SparePartOrderDto>> getAll(@RequestParam Long id) {
+        return ResponseEntity.ok(sparePartOrderService.getAllByPerson(id));
     }
 }

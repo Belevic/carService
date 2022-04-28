@@ -4,12 +4,11 @@ import com.bsuir.carservice.model.CloseReason;
 import com.bsuir.carservice.model.Status;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ServiceOrderDto implements Serializable {
     private Long id;
-    private Date date;
-    private Date serviceDate;
+    private String date;
+    private String serviceDate;
     private CloseReason closeReason;
     private Status status;
     private PersonDto person;
@@ -27,19 +26,19 @@ public class ServiceOrderDto implements Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Date getServiceDate() {
+    public String getServiceDate() {
         return serviceDate;
     }
 
-    public void setServiceDate(Date serviceDate) {
+    public void setServiceDate(String serviceDate) {
         this.serviceDate = serviceDate;
     }
 

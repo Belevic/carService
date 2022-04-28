@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class SparePartOrderDto implements Serializable {
     private Long id;
-    private Date date;
+    private String date;
     private int amount;
     private CloseReason closeReason;
     private Status status;
@@ -27,11 +27,11 @@ public class SparePartOrderDto implements Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

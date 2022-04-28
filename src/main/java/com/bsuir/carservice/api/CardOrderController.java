@@ -35,7 +35,7 @@ public class CardOrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CarOrderDto>> getAll() {
-        return ResponseEntity.ok(carOrderService.getAll());
+    public ResponseEntity<List<CarOrderDto>> getAll(@RequestParam Long id) {
+        return ResponseEntity.ok(carOrderService.getAllByPerson(id));
     }
 }

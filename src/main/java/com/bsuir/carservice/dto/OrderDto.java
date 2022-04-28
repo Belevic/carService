@@ -14,7 +14,7 @@ public class OrderDto {
     private Long equipmentId;
     private Long serviceId;
     private Long sparePartId;
-    private Date serviceDate;
+    private String serviceDate;
     private int amount;
 
     public OrderDto() {
@@ -84,11 +84,11 @@ public class OrderDto {
         this.sparePartId = sparePartId;
     }
 
-    public Date getServiceDate() {
+    public String getServiceDate() {
         return serviceDate;
     }
 
-    public void setServiceDate(Date serviceDate) {
+    public void setServiceDate(String serviceDate) {
         this.serviceDate = serviceDate;
     }
 

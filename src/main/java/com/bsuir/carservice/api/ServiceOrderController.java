@@ -8,6 +8,7 @@ import com.bsuir.carservice.service.ServiceOrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,19 +24,19 @@ public class ServiceOrderController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<ServiceOrderDto> save(@RequestBody OrderDto orderDto) {
+    public ResponseEntity<ServiceOrderDto> save(@RequestBody OrderDto orderDto) throws ParseException {
         return Objects.isNull(orderDto) ? ResponseEntity.badRequest().build() :
                 ResponseEntity.ok(serviceOrderService.save(orderDto));
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ServiceOrderDto> update(@RequestBody OrderDto orderDto) {
+    public ResponseEntity<ServiceOrderDto> update(@RequestBody OrderDto orderDto) throws ParseException {
         return Objects.isNull(orderDto) ? ResponseEntity.badRequest().build() :
                 ResponseEntity.ok(serviceOrderService.update(orderDto));
     }
 
     @GetMapping
-    public ResponseEntity<List<ServiceOrderDto>> getAll() {
-        return ResponseEntity.ok(serviceOrderService.getAll());
+    public ResponseEntity<List<ServiceOrderDto>> getAll(@RequestParam Long id) {
+        return ResponseEntity.ok(serviceOrderService.getAllByPerson(id));
     }
 }
