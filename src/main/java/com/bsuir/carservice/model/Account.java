@@ -25,6 +25,11 @@ public class Account implements Serializable {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @MapsId
+    @JoinColumn(name = "id")
+    private Person person;
+
     public Account() {
     }
 
@@ -66,5 +71,13 @@ public class Account implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
