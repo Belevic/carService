@@ -1,8 +1,13 @@
 package com.bsuir.carservice.service;
 
+import com.bsuir.carservice.dto.ManagerDto;
 import com.bsuir.carservice.dto.PersonDto;
+import com.bsuir.carservice.dto.ServiceDto;
 import com.bsuir.carservice.mapper.PersonMapper;
+import com.bsuir.carservice.model.Account;
 import com.bsuir.carservice.model.Person;
+import com.bsuir.carservice.model.Role;
+import com.bsuir.carservice.repository.AccountRepository;
 import com.bsuir.carservice.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +27,12 @@ public class PersonService {
     EntityManager entityManager;
 
     private final PersonRepository personRepository;
+    private final AccountRepository accountRepository;
     private final PersonMapper personMapper;
 
-    public PersonService(PersonRepository personRepository, PersonMapper personMapper) {
+    public PersonService(PersonRepository personRepository, AccountRepository accountRepository, PersonMapper personMapper) {
         this.personRepository = personRepository;
+        this.accountRepository = accountRepository;
         this.personMapper = personMapper;
     }
 
@@ -48,5 +55,26 @@ public class PersonService {
             managerMap.put(fio, ((BigInteger) result[1]).intValue());
         }
         return managerMap;
+    }
+
+    public void save(ManagerDto managerDto) {
+        Account account = new Account();
+        account.setEmail(managerDto.getEmail());
+        account.setPassword(managerDto.getPassword());
+        account.setRole(Role.ROLE_MANAGER);
+
+        Person person = new Person();
+        person.setFirstName(managerDto.getFirstName());
+        person.setLastName(managerDto.getLastName());
+        person.setMiddleName(managerDto.getMiddleName());
+        person.setPhone(managerDto.getPhone());
+
+        account.setPerson(person);
+
+        accountRepository.save(account);
+    }
+
+    public List<PersonDto> getAllManagers() {
+        return personRepository.getAllManagers(Role.ROLE_MANAGER).stream().map(personMapper::personToDto).collect(Collectors.toList());
     }
 }
