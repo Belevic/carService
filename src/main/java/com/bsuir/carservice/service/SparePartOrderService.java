@@ -1,17 +1,15 @@
 package com.bsuir.carservice.service;
 
 
-import com.bsuir.carservice.dto.CarOrderDto;
 import com.bsuir.carservice.dto.OrderDto;
-import com.bsuir.carservice.dto.ServiceOrderDto;
 import com.bsuir.carservice.dto.SparePartOrderDto;
-import com.bsuir.carservice.mapper.ServiceOrderMapper;
 import com.bsuir.carservice.mapper.SparePartOrderMapper;
-import com.bsuir.carservice.model.CarOrder;
-import com.bsuir.carservice.model.ServiceOrder;
 import com.bsuir.carservice.model.SparePartOrder;
 import com.bsuir.carservice.model.Status;
-import com.bsuir.carservice.repository.*;
+import com.bsuir.carservice.repository.PersonRepository;
+import com.bsuir.carservice.repository.SparePartOrderRepository;
+import com.bsuir.carservice.repository.SparePartRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -64,6 +62,10 @@ public class SparePartOrderService {
     public List<SparePartOrderDto> getAllByPerson(Long personId) {
         return sparePartOrderRepository.getAllByPersonOrderByIdAsc(personRepository.getById(personId))
                 .stream().map(sparePartOrderMapper::sparePartOrderToDto).collect(Collectors.toList());
+    }
+
+    public List<SparePartOrderDto> getAll() {
+        return sparePartOrderRepository.findAll(Sort.by("id").ascending()).stream().map(sparePartOrderMapper::sparePartOrderToDto).collect(Collectors.toList());
     }
 }
 

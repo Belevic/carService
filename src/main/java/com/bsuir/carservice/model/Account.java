@@ -67,6 +67,7 @@ public class Account implements Serializable {
 
     public Role getRole() {
         return role;
+
     }
 
     public void setRole(Role role) {

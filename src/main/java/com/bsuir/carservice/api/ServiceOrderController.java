@@ -36,7 +36,7 @@ public class ServiceOrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ServiceOrderDto>> getAll(@RequestParam Long id) {
+    public ResponseEntity<List<ServiceOrderDto>> getAllById(@RequestParam Long id) {
         return ResponseEntity.ok(serviceOrderService.getAllByPerson(id));
     }
 }

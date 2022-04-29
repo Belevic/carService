@@ -21,6 +21,8 @@ public class SparePartController {
         this.sparePartService = sparePartService;
     }
 
+
+
     @GetMapping
     public ResponseEntity<List<SparePartDto>> getAll() {
         return ResponseEntity.ok(sparePartService.getAll());
