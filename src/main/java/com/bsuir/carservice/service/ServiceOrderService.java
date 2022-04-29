@@ -9,6 +9,7 @@ import com.bsuir.carservice.model.Status;
 import com.bsuir.carservice.repository.PersonRepository;
 import com.bsuir.carservice.repository.ServiceOrderRepository;
 import com.bsuir.carservice.repository.ServiceRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -69,5 +70,9 @@ public class ServiceOrderService {
     public List<ServiceOrderDto> getAllByPerson(Long personId) {
         return serviceOrderRepository.getAllByPersonOrderByIdAsc(personRepository.getById(personId))
                 .stream().map(serviceOrderMapper::serviceOrderToDto).collect(Collectors.toList());
+    }
+
+    public List<ServiceOrderDto> getAll() {
+        return serviceOrderRepository.findAll(Sort.by("id").ascending()).stream().map(serviceOrderMapper::serviceOrderToDto).collect(Collectors.toList());
     }
 }
